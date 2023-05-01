@@ -60,23 +60,11 @@ ON
 WHERE
     fa.FacName = 'Basketball arena'
 
-
--- Cross product style
-SELECT location.locno, locname
-FROM facility, location
-WHERE facname = 'Basketball arena' 
-  AND facility.facno = location.facno;
-
--- Join operator style
-SELECT location.locno, locname
-FROM facility INNER JOIN location ON facility.facno = location.facno
-WHERE facname = 'Basketball arena';
-
 -- IN operator
 SELECT location.locno, locname
-FROM location
+FROM [ICA].[dbo].[Location] 
 WHERE location.facno IN 
-   ( SELECT facno FROM facility WHERE facname = 'Basketball arena' );
+   ( SELECT facno FROM [ICA].[dbo].[Facility] WHERE facname = 'Basketball arena' );
 
 --For each event plan, list the plan number, count of the event plan lines, and sum of the
 --number of resources assigned. For example, plan number P100 has 4 lines and 7 resources
